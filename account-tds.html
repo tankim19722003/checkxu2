@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style-for-nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="./style-for-account-tds.css">
+    <title>Account TDS</title>
+</head>
+<body>
+    <nav id="nav">
+        <ul id="nav-list">
+            <li class="nav-item">
+                <a  class="nav-item_link" href="./index.html">Account Mg</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-item_link" href="./code-generate.html" id="code-generator">Code Generate</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-item_link" href="./history.html">History</a>
+            </li>
+            
+            <li class="nav-item">
+                <a  class="nav-item_link active" href="./history.html">TDS Accounts</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="body">
+        <div id="tds">
+            <div id="tds-adding">
+                <h3 id="tds-adding_title">Add Account</h3>
+               <div id="tds-input">
+                    <input type="text" placeholder="Access token" class="input" id="access-token">
+               </div>
+                <div class="" id="save-tds-wrap">
+                    <button id="save-tds">Save</button>
+                </div>
+            </div>
+    
+            <div id="tds-accounts">
+                <h3 id="tds-accounts_title">TDS Accounts</h3>
+
+                <table class="account-list">
+                    <thead>
+                        <th class="thead">
+                            STT
+                        </th>
+                        <th class="thead">
+                            Tds account
+                        </th>
+                        <th class="thead">
+                            Xu
+                        </th>
+                        <th class="thead">
+                            Controller
+                        </th>
+                    </thead>
+                    <tbody id="account-body">
+                        <tr class="account-item">
+                            <td class="account-item_info">1</td>
+                            <td class="account-item_info">minhanh123</td>
+                            <td class="account-item_info">10.000.000</td>  
+                            <td class="account-item_info" style="padding:0px 8px">
+                                <button class="remove" data-id="${accountItem.id}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>  
+                        </tr>
+                        <tr class="account-item">
+                            <td class="account-item_info">1</td>
+                            <td class="account-item_info">minhanh123</td>
+                            <td class="account-item_info">10.000.000</td>  
+                            <td class="account-item_info" style="padding:0px 8px">
+                                <button class="remove" data-id="${accountItem.id}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>  
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="./account-tds-service.js" type="module" ></script>
+</body>
