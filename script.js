@@ -48,7 +48,7 @@ window.onload = async function() {
     if (!tdsAccount.isDeleted) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/profile?token=${tdsAccount.accessToken}`
+          `https://checkxu2.onrender.com:3000/api/profile?token=${tdsAccount.accessToken}`
         );
         const data = await response.json();
         console.log(data);
