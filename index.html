@@ -31,17 +31,28 @@
     <div id="body">
         <div id="tds">
             <div id="tds-adding">
-                <h3 id="tds-adding_title">Add Account</h3>
+                <h3 id="tds-adding_title">
+                    Add Account 
+                </h3>
                <div id="tds-input">
                     <input type="text" placeholder="Access token" class="input" id="access-token">
                </div>
+
+               <div id="tds-input">
+                    <input type="text" placeholder="Máy" class="input" id="device">
+                </div>
                 <div class="" id="save-tds-wrap">
                     <button id="save-tds">Save</button>
                 </div>
             </div>
     
             <div id="tds-accounts">
-                <h3 id="tds-accounts_title">TDS Accounts</h3>
+                <h3 id="tds-accounts_title">TDS Accounts
+                    <p style="margin:8px 0px">
+                        <span style="font-size:14px;">Total money: </span>
+                        <span id="total-money" style="font-size:14px;margin: 0px 6px;font-weight:100"></span>
+                    </p>
+                </h3>
 
                 <table class="account-list">
                     <thead>
@@ -53,6 +64,9 @@
                         </th>
                         <th class="thead">
                             Xu
+                        </th>
+                        <th class="thead">
+                            Máy
                         </th>
                         <th class="thead">
                             Controller
