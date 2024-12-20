@@ -30,37 +30,44 @@
 //--------------------------------END CONNECT DT-------------------------
 
 class TdsAccount {
-  constructor (id, accessToken, isDeleted=false) {
+  constructor (id, accessToken,device, isDeleted=false) {
       this.id = id;
       this.accessToken = accessToken;
-      this.isDeleted = isDeleted
+      this.isDeleted = isDeleted;
+      this.device = device;
   }
 }
 
 window.onload = async function() {
+  const formatter = new Intl.NumberFormat('de-DE');
   let tdsAccounts = await getAllTdsAccounts();
 
   let html = '';
+
+  let totalMoney = 0;
   for (let i = 0; i < tdsAccounts.length; i++) {
 
     let tdsAccount = tdsAccounts[i];
+    console.log("Heloo")
     
     if (!tdsAccount.isDeleted) {
       try {
         const response = await fetch(
-          `https://checkxu2.onrender.com/api/profile?token=${tdsAccount.accessToken}`
+          `http://localhost:3000/api/profile?token=${tdsAccount.accessToken}`
         );
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
        
         let account = data.data;
         let xu = account.xu;
-        const formatter = new Intl.NumberFormat('de-DE');
+         // get total money
+        totalMoney += parseInt(xu);
         const formattedxu = formatter.format(xu);
         html += `  <tr class="account-item" data-account-container="${tdsAccount.id}">
                         <td class="account-item_info">${i+1}</td>
                         <td class="account-item_info">${account.user}</td>
                         <td class="account-item_info">${formattedxu}</td>  
+                        <td class="account-item_info">${tdsAccount.device}</td>
                         <td class="account-item_info remove-container" style="padding:0px 8px" data-account-id="${tdsAccount.id}">
                               <i class="fa-solid fa-trash remove-account"  ></i>
                         </td>  
@@ -75,6 +82,8 @@ window.onload = async function() {
   }
 
   
+  // show totalmoney
+  document.getElementById("total-money").textContent = formatter.format(totalMoney);;
   document.getElementById("account-body").insertAdjacentHTML("beforeend", html);
 
 
@@ -98,6 +107,7 @@ async function getAllTdsAccounts() {
     const snapshot = await get(child(dbRef, "TdsAccounts"));
     if (snapshot.exists()) {
       let data = snapshot.val();
+      console.log(data);
       const accountsArray = Object.values(data); // Convert object to an array of accounts
       return accountsArray;
     } else {
@@ -140,7 +150,15 @@ document.getElementById("save-tds").onclick = async function addTdsAccount() {
 
   let id = Date.now();
 
-  let tdsAccount = new TdsAccount(id, accessToken);
+  // get device 
+  const device = document.getElementById("device").value;
+  if (device == '') {
+    alert("Vui lòng nhập đầy đủ thông tin");
+    return;
+  }
+
+
+  let tdsAccount = new TdsAccount(id, accessToken, device);
   
   // save acccount
   saveTDSAccount(tdsAccount);
